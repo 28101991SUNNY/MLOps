@@ -1,0 +1,16 @@
+2023-02-17 22:44:46,187 [9052] DEBUG    root:75: [JupyterRequire] Loading Jupyter Require extension.
+2023-02-17 22:44:46,188 [9052] DEBUG    root:93: [JupyterRequire] Initializing comms.
+2023-02-17 22:44:46,188 [9052] INFO     root:247: [JupyterRequire] Initializing comms.
+2023-02-17 22:44:46,190 [9052] DEBUG    root:195: [JupyterRequire] Configuration requested: {'paths': {}, 'shim': None}
+2023-02-17 22:44:46,191 [9052] INFO     root:271: [JupyterRequire] Comms have been successfully initialized.
+2023-02-17 22:44:46,192 [9052] DEBUG    root:97: [JupyterRequire] Registering comm targets.
+2023-02-17 22:44:46,718 [9052] DEBUG    root:75: [JupyterRequire] Loading Jupyter Require extension.
+2023-02-17 22:44:46,718 [9052] DEBUG    root:93: [JupyterRequire] Initializing comms.
+2023-02-17 22:44:46,718 [9052] INFO     root:247: [JupyterRequire] Initializing comms.
+2023-02-17 22:44:46,721 [9052] DEBUG    root:195: [JupyterRequire] Configuration requested: {'paths': {}, 'shim': None}
+2023-02-17 22:44:46,722 [9052] INFO     root:271: [JupyterRequire] Comms have been successfully initialized.
+2023-02-17 22:44:46,723 [9052] DEBUG    root:97: [JupyterRequire] Registering comm targets.
+2023-02-17 22:45:11,791 [9052] WARNING  py.warnings:109: [JupyterRequire] C:\Users\sunny\anaconda3\lib\site-packages\sklearn\base.py:409: UserWarning: X does not have valid feature names, but RandomForestClassifier was fitted with feature names
+  warnings.warn(
+
+2023-02-17 22:45:13,575 [9052] DEBUG    urllib3.connectionpool:227: [JupyterRequire] Starting new HTTP connection (1): 13.233.127.47:5000
