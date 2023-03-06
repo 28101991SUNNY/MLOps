@@ -1,9 +1,8 @@
-import numpy 
-import numpy as np
 import pandas as pd
 import streamlit as st
 import datetime
 import pickle
+import warnings
 
 
 
@@ -117,24 +116,24 @@ encode_dict = {
 def model_predict(loan_amnt,
                    term, 
                   int_rate, 
-                  installment = 472,
-                   grade = 'A',
-                   sub_grade='A1',
-                   home_ownership='MORTGAGE',
-                   annual_inc = 133692, 
-                   purpose='car',
-                   dti = 15, 
-                   open_acc= 12, 
-                   pub_rec= 0, 
-                   revol_bal= 37000, 
-                   revol_util = 58,
-                   total_acc = 32, 
-                   application_type = 'DIRECT_PAY', 
-                   mort_acc = 1,
-                   pub_rec_bankruptcies = 0, 
-                   Zip_Code='00813'):
+                  installment,
+                   grade ,
+                   sub_grade,
+                   home_ownership,
+                   annual_inc, 
+                   purpose,
+                   dti , 
+                   open_acc, 
+                   pub_rec, 
+                   revol_bal, 
+                   revol_util ,
+                   total_acc , 
+                   application_type , 
+                   mort_acc,
+                   pub_rec_bankruptcies, 
+                   Zip_Code):
     
-    with open("DTC_Pipe_line_model", 'rb') as file:
+    with open("DTC_Pipe_line_model.pkl", 'rb') as file:
 
         DecisionTreeModel = pickle.load(file)
     
@@ -157,7 +156,7 @@ def model_predict(loan_amnt,
 if st.button("Predict Loan Defulter"):
 
     term = encode_dict['term'][term]
-    Grade = encode_dict['grade'][grade]
+    grade = encode_dict['grade'][grade]
     sub_grade = encode_dict['sub_grade'][sub_grade]
     home_ownership = encode_dict['home_ownership'][home_ownership]
     purpose = encode_dict['purpose'][purpose]
@@ -183,5 +182,11 @@ if st.button("Predict Loan Defulter"):
                              mort_acc,
                              pub_rec_bankruptcies,
                              Zip_Code)
-    st.text("Predicted : "+ str(deafault))
+    
+    if deafault == 1:
+        ans = "Default"
+    else:
+        ans = "Extend CreditLine"
+
+    st.text("Predicted : "+ str(ans))
 
