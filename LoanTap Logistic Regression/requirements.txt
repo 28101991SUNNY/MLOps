@@ -1,4 +1,7 @@
 numpy
 pandas
 scikit-learn
-streamlit
+sklearn
+Streamlit
+Flask
+warnings
