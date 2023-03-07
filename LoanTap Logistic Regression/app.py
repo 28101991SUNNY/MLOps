@@ -22,16 +22,8 @@ def ping():
 
 
 # loading the model
-model_pickle = open("DTC_Pipe_line_model.pkl", 'rb')
+model_pickle = open('DTC_Pipe_line_model.pkl', 'rb')
 clf = pickle.load(model_pickle)
-
-
-    # with open("DTC_Pipe_line_model.pkl", 'rb') as file:
-
-    #     DecisionTreeModel = pickle.load(file)
-
-
-
 
 
 
@@ -41,10 +33,10 @@ clf = pickle.load(model_pickle)
 @app.route("/predict", methods=['POST'])
 def prediction():
 
-        
-    loan_req = request.get_json()
 
+    loan_req = request.get_json()
     
+
     encode_dict = {
         "term" : {' 36 months': 0, ' 60 months': 1},
         "grade" : {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6},
@@ -56,22 +48,36 @@ def prediction():
     }
 
 
-    term = encode_dict['term'][term]
-    grade = encode_dict['grade'][grade]
-    sub_grade = encode_dict['sub_grade'][sub_grade]
-    home_ownership = encode_dict['home_ownership'][home_ownership]
-    purpose = encode_dict['purpose'][purpose]
-    application_type = encode_dict['application_type'][application_type]
-    Zip_Code = encode_dict["Zip_Code"][Zip_Code]
+    term = encode_dict['term'][loan_req["term"]]
+    grade = encode_dict['grade'][loan_req["grade"]]
+    sub_grade = encode_dict['sub_grade'][loan_req["sub_grade"]]
+    home_ownership = encode_dict['home_ownership'][loan_req["home_ownership"]]
+    purpose = encode_dict['purpose'][loan_req["purpose"]]
+    application_type = encode_dict['application_type'][loan_req["application_type"]]
+    Zip_Code = encode_dict["Zip_Code"][loan_req["Zip_Code"]]
 
-    
+
+    loan_amnt = loan_req["loan_amnt"]
+    int_rate = loan_req["int_rate"]
+    installment =loan_req["installment"]
+    annual_inc = loan_req["annual_inc"]
+    dti = loan_req["dti"]
+    open_acc = loan_req["open_acc"]
+    pub_rec = loan_req["pub_rec"]
+    revol_bal = loan_req["revol_bal"]
+    revol_util = loan_req["revol_util"]
+    total_acc = loan_req["total_acc"]
+    mort_acc = loan_req["mort_acc"]
+    pub_rec_bankruptcies = loan_req["pub_rec_bankruptcies"]
+
     input_features = [[loan_amnt, term, int_rate, installment,
                    grade, sub_grade, home_ownership, annual_inc, 
                    purpose, dti, open_acc, pub_rec, revol_bal, revol_util,
                    total_acc, application_type, mort_acc,
                      pub_rec_bankruptcies, Zip_Code]]
-
-
+    
+    
+    
     prediction = clf.predict(input_features)
 
     if prediction == 0:
@@ -106,7 +112,6 @@ def get_application_params():
                     "mort_acc":0,
                     "pub_rec_bankruptcies":0, 
                     "Zip_Code" :"22690"
-
         }
     return parameters
 
